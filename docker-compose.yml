@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  instagram-bot:
+    build: .
+    image: instagram-carousel-automation:latest
+    container_name: instagram-carousel
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      # ── Required — fill these in ──────────────────────────────────────────
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - UNSPLASH_ACCESS_KEY=${UNSPLASH_ACCESS_KEY}
+      - INSTAGRAM_ACCOUNT_ID=${INSTAGRAM_ACCOUNT_ID}
+      - INSTAGRAM_ACCESS_TOKEN=${INSTAGRAM_ACCESS_TOKEN}
+      # ── Optional ──────────────────────────────────────────────────────────
+      - PORT=3000
+      - TZ=Europe/London
+      # Set RUN_NOW=true to trigger immediately on container start (for testing)
+      # - RUN_NOW=true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s

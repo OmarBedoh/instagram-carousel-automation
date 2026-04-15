@@ -1,0 +1,18 @@
+{
+  "name": "instagram-carousel-automation",
+  "version": "1.0.0",
+  "description": "Daily Instagram carousel posting for personal trainer — Claude Haiku + Unsplash + Instagram Graph API",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "RUN_NOW=true node src/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "node-cron": "^3.0.3",
+    "node-fetch": "^2.7.0"
+  }
+}
